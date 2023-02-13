@@ -19,7 +19,12 @@ Posts.init(
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        user_id: {
+        postDate: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
+        userId: {
             type: DataTypes.INTEGER,
             references: {
             model: 'user',
