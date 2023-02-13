@@ -36,14 +36,15 @@ router.get('/post/:id', withAuth, async (req, res) => {
         },
         {
           model: Comments,
-          // include: {
-          //   User
-          // },
+          include: [
+            User
+          ],
         },
       ],
     });
 
     const post = postData.get({ plain: true });
+    console.log(post);
 
     res.render('post', {
       ...post,

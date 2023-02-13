@@ -8,10 +8,10 @@
 
 <div class="row py-3 mb-4">
   <div class="column">
-    <form id="commentForm">
+    <form id="commentForm" data-postId= "{{id}}">
       <div class="form-group">
         <label for="commentBox"></label>
-        <textarea class="form-control" name="commentName" id="commmentBox" placeholder="Add your comment here..." rows="5"></textarea> 
+        <textarea class="form-control" name="commentName" id="commentBox" placeholder="Add your comment here..." rows="5"></textarea> 
       </div>
       <div class="text-center">
         <button type="submit" class="btn btn-secondary btn-lg my-2">Submit Comment</button>
@@ -23,12 +23,14 @@
 <div class="row py-3 mb-4">
   <div class="column">
     {{#each comments as |comment|}}
-    <p>{{comment.body}}</p>
+    <h3>{{comment.commentBody}}</h3>
+    <h4>- {{user.name}} {{comment.commentDate}}</h4>
     {{/each}}
   </div>
 </div>
 
-<script src="./js/submitComment.js"></script>
+{{!-- <script src="./js/submitComment.js"></script> --}}
+<script src="/js/submitComment.js"></script>
 
 
   
