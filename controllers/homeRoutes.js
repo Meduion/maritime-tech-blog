@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Posts } = require('../models');
+const { User, Posts, Comments } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
     });
 
     const posts = postsData.map((post) => post.get({ plain: true }));
+    console.log(posts);
 
     res.render('homepage', {
       posts,
@@ -25,14 +26,32 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
-  }
+router.get('/post/:id', withAuth, async (req, res) => {
+  try {
+    const postData = await Posts.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+        {
+          model: Comments,
+          // include: {
+          //   User
+          // },
+        },
+      ],
+    });
 
-  res.render('login');
+    const post = postData.get({ plain: true });
+
+    res.render('post', {
+      ...post,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
@@ -51,6 +70,16 @@ router.get('/dashboard', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.get('/login', (req, res) => {
+  // If the user is already logged in, redirect the request to dashboard
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
+
+  res.render('login');
 });
 
 module.exports = router;
