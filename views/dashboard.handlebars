@@ -1,1 +1,11 @@
-<h2>Hello!</h2>
+{{#each users as |user|}}
+<div class="row py-3 mb-4">
+  <div class="column">
+    <h2>
+      <a href="/post/{{post.id}}">{{post.title}}</a>
+    </h2>
+    <h5>Posted by {{user.name}} on {{post.postDate}}</h4>
+    <p>{{post.body}}</p>
+  </div>
+</div>
+{{/each}}

@@ -3,10 +3,11 @@ const { Comments } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
+    console.log(req.body);
     try {
         const newComment = await Comments.create({
             ...req.body,
-            userId: req.session.userId,
+            userId: req.session.user_id,
         });
 
         res.status(200).json(newComment);

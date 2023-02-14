@@ -1,16 +1,16 @@
-const commentFormHandler = async (event) => {
+const postFormHandler = async (event) => {
     event.preventDefault();
   
     // Collect values from the comment form
-    const commentBody = document.querySelector('#commentBox').value.trim();
-    const postId = document.querySelector('#commentForm').getAttribute("data-postId")
-    console.log(commentBody);
+    const postBody = document.querySelector('#commentBox').value.trim();
+    // const postId = document.querySelector('#commentForm').getAttribute("data-postId")
+    console.log(postBody);
   
-    if (commentBody) {
+    if (postBody) {
       // Send a POST request to the API endpoint
       const response = await fetch('/api/comments', {
         method: 'POST',
-        body: JSON.stringify({ commentBody, postId }),
+        body: JSON.stringify({ postBody, postId }),
         headers: { 'Content-Type': 'application/json' },
       });
   
@@ -26,4 +26,4 @@ const commentFormHandler = async (event) => {
 
   document
     .querySelector('#commentForm')
-    .addEventListener('submit', commentFormHandler);
+    .addEventListener('submit', postFormHandler);
