@@ -1,0 +1,12 @@
+[
+    {
+        "commentBody": "This is one of my favourite speeches ever!",
+        "userId": 3,
+        "postId": 1
+    },
+    {
+        "commentBody": "I wish I could have written this speech...",
+        "userId": 2,
+        "postId": 2
+    }
+]
