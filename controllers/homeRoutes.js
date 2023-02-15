@@ -63,7 +63,12 @@ router.get('/dashboard', withAuth, async (req, res) => {
       },
       include: [
         {
-          model: Posts
+          model: Posts,
+          include: [
+            {
+              model: User
+            },
+          ],
         },
       ],
     });

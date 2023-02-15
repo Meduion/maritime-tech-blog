@@ -18,6 +18,7 @@ const postFormHandler = async (event) => {
       if (response.ok) {
         // If successful, redirect the browser to the dashboard page
         console.log(response);
+        document.querySelector('#new-post-button').classList.remove('d-none');
         document.location.reload();
       } else {
         alert(response.statusText);
