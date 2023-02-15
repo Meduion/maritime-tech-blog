@@ -12,7 +12,7 @@
 
 <div class="row py-3 mb-4">
   <div class="column">
-    <form id="postForm">
+    <form class="d-none" id="postForm">
       <div class="form-group">
         <label for="postTitle"></label>
         <input class="form-control" type="text" name="postTitleName" id="postTitle" placeholder="Title..."></textarea> 
@@ -25,7 +25,11 @@
         <button type="submit" class="btn btn-secondary btn-lg my-2">Submit New Post</button>
       </div>
     </form>
+    <div class="text-center">
+      <button class="btn btn-secondary btn-lg my-2" id="new-post-button" type="button">Create New Post</button>
+    </div>
   </div>
 </div>
 
 <script src="/js/submitPost.js"></script>
+<script src="/js/addPost.js"></script>
