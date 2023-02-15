@@ -1,11 +1,31 @@
-{{#each users as |user|}}
+{{#each posts as |post|}}
 <div class="row py-3 mb-4">
   <div class="column">
     <h2>
-      <a href="/post/{{post.id}}">{{post.title}}</a>
+      <a href="/post/{{post.id}}">{{post.postTitle}}</a>
     </h2>
-    <h5>Posted by {{user.name}} on {{post.postDate}}</h4>
-    <p>{{post.body}}</p>
+    <h5>Posted by {{post.user.name}} on {{post.postDate}}</h4>
+    <p>{{post.postBody}}</p>
   </div>
 </div>
 {{/each}}
+
+<div class="row py-3 mb-4">
+  <div class="column">
+    <form id="postForm">
+      <div class="form-group">
+        <label for="postTitle"></label>
+        <input class="form-control" type="text" name="postTitleName" id="postTitle" placeholder="Title..."></textarea> 
+      </div>
+      <div class="form-group">
+        <label for="postBody"></label>
+        <textarea class="form-control" name="postBodyName" id="postBody" placeholder="Write your post here..." rows="5"></textarea> 
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-secondary btn-lg my-2">Submit New Post</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/submitPost.js"></script>
